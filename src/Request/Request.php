@@ -126,7 +126,6 @@ class Request
      */
     private function getRequestTypeClassName($requestType)
     {
-        $requestType = str_replace('.','_',$requestType); // convert types with namespace like AMAZON.HelpIntent
         if (!class_exists('\\Alexa\\Request\\'.$requestType)) {
             throw new RuntimeException('Unknown request type: '.$requestType);
         }
