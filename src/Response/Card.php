@@ -2,16 +2,32 @@
 
 namespace Alexa\Response;
 
-class Card {
-	public $type = 'Simple';
-	public $title = '';
-	public $content = '';
+class Card
+{
+    /**
+     * @var string
+     */
+    public $type = 'Simple';
 
-	public function render() {
-		return array(
-			'type' => $this->type,
-			'title' => $this->title,
-			'content' => $this->content,
-		);
-	}
+    /**
+     * @var string
+     */
+    public $title = '';
+
+    /**
+     * @var string
+     */
+    public $content = '';
+
+    /**
+     * @return array
+     */
+    public function render()
+    {
+        return array(
+            'type' => $this->type,
+            'title' => $this->title,
+            'content' => $this->content,
+        );
+    }
 }

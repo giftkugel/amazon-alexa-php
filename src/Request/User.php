@@ -2,13 +2,25 @@
 
 namespace Alexa\Request;
 
-class User {
-	public $userId;
-	public $accessToken;
+class User
+{
+    /**
+     * @var null|string
+     */
+    public $userId;
 
-	public function __construct($data) {
-		$this->userId = isset($data['userId']) ? $data['userId'] : null;
-		$this->accessToken = isset($data['accessToken']) ? $data['accessToken'] : null;
-	}
+    /**
+     * @var null|string
+     */
+    public $accessToken;
+
+    /**
+     * @param array $data
+     */
+    public function __construct($data)
+    {
+        $this->userId = isset($data['userId']) ? $data['userId'] : null;
+        $this->accessToken = isset($data['accessToken']) ? $data['accessToken'] : null;
+    }
 
 }

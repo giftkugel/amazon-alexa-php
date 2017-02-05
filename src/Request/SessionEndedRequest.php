@@ -2,12 +2,20 @@
 
 namespace Alexa\Request;
 
-class SessionEndedRequest extends Request {
-	public $reason;
+class SessionEndedRequest extends Request
+{
+    /**
+     * @var string
+     */
+    public $reason;
 
-	public function __construct($rawData) {
-		parent::__construct($rawData);
+    /**
+     * @param string $rawData
+     */
+    public function __construct($rawData)
+    {
+        parent::__construct($rawData);
 
-		$this->reason = $this->data['request']['reason'];
-	}
+        $this->reason = $this->data['request']['reason'];
+    }
 }
