@@ -12,7 +12,7 @@ Install via composer:
     "repositories": [
         {
             "type": "vcs",
-            "url": "https://github.com/danstreeter/amazon-alexa-php"
+            "url": "https://github.com/pixeljunkie/amazon-alexa-php"
         }
     ],
     "require": {
