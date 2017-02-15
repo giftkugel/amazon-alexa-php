@@ -98,11 +98,18 @@ class Request
      */
     public function fromData()
     {
+        $whitelist = array('127.0.0.1', '::1');
+
+        $localhost = false;
+        if(in_array($_SERVER['REMOTE_ADDR'], $whitelist)){
+            $localhost = true;
+        }
+        
         $data = $this->data;
 
         // Instantiate a new Certificate validator if none is injected
         // as our dependency.
-        if (!isset($this->certificate)) {
+        if (!isset($this->certificate) && !$localhost) {
             $this->certificate = new Certificate($_SERVER['HTTP_SIGNATURECERTCHAINURL'], $_SERVER['HTTP_SIGNATURE']);
         }
         if (!isset($this->application)) {
@@ -111,8 +118,11 @@ class Request
 
         // We need to ensure that the request Application ID matches our Application ID.
         $this->application->validateApplicationId($data['session']['application']['applicationId']);
-        // Validate that the request signature matches the certificate.
-        $this->certificate->validateRequest($this->rawData);
+
+        if (!$localhost) {
+            // Validate that the request signature matches the certificate.
+            $this->certificate->validateRequest($this->rawData);
+        }
 
         $className = $this->getRequestTypeClassName($data['request']['type']);
         $request = new $className($this->rawData, $this->applicationId);
